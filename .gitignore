@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Datasets and audio - never commit these
+data/
+*.wav
+*.flac
+*.mp3
+*.npy
+*.h5
+
+# Checkpoints and outputs
+models/
+*.pt
+*.pth
+*.ckpt
+results/
+runs/
+wandb/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
