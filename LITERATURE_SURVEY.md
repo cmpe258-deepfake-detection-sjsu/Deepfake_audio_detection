@@ -2,7 +2,9 @@
 
 ## Purpose
 
-This survey positions the project against recent work in speech deepfake detection, self-supervised representations, generalization to unseen attacks, and confidence/robustness evaluation. AASIST is included as the foundational baseline even though it predates the required recent-paper window.
+This survey positions the project against recent work in speech deepfake detection, self-supervised representations, generalization under distribution shift, adversarial attacks on countermeasures, and shortcut learning. AASIST is included as the foundational baseline even though it predates the required recent-paper window.
+
+*Entries 1-9 were written for the original proposal and are unchanged. Entries 10-14 were added after the project was refocused on shift decomposition over ASVspoof 5, and cover the areas that refocus made load-bearing: generalization decomposition, shortcut learning, the adversarial attacks in the ASVspoof 5 evaluation set, and codec robustness.*
 
 ## Foundational Baseline
 
@@ -108,40 +110,97 @@ PV-VASM proposes a probabilistic framework (built on concentration inequalities)
 
 ---
 
+### 10. Müller, Czempin, Dieckmann, Froghyar & Böttinger, "Harder or Different? Understanding Generalization of Audio Deepfake Detection," 2024 (arXiv:2406.03512)
+
+Splits the in-domain/out-of-domain performance gap into a **hardness** component (the new data is intrinsically harder) and a **difference** component (the model fails to transfer), across four detectors trained on ASVspoof 2019 LA and tested on ASVspoof 2021 LA/DF, truncated audio and In-the-Wild. Finds that difference dominates for unseen attacks and for telephony/compression, and that SSL-based models show smaller gaps, which the authors tentatively attribute to less training-specific features.
+
+**Relevance:** this is the closest prior work to our framing. It decomposes generalization failure rather than reporting a pooled number, and it compares SSL against specialised architectures.
+
+**Difference from our approach:** the split is hardness versus difference, not *by cause*. The paper does not separate unseen generator from codec from adversarial post-processing, does not use ASVspoof 5 (where those three are labelled on one evaluation set), and does not pair coded audio with its own uncoded original. Its SSL observation is explicitly described as preliminary.
+
+**Implication:** we must not claim that decomposing the generalization gap is new. Our contribution is the per-cause decomposition on a benchmark that labels all three shifts, with utterance-level pairing and speaker-level intervals, and the mechanism we identify for *why* one architecture fails.
+
+---
+
+### 11. Müller, Dieckmann, Czempin, Canals, Böttinger & Williams, "Speech is Silver, Silence is Golden: What do ASVspoof-trained Models Really Learn?," Interspeech 2021 (arXiv:2106.12914)
+
+Shows that models trained on ASVspoof rely heavily on the **leading and trailing silence** of an utterance rather than on the speech itself, to the point that detection performance can largely be reproduced from non-speech regions alone.
+
+**Relevance:** this is the canonical shortcut result in our field, and it is the reason our controls table includes a VAD-trimmed rerun and a silence-and-duration-only classifier. It also bears directly on our finding that codec conditions degrade the bona fide class rather than hiding spoof artifacts: if a detector keys on signal quality rather than synthesis evidence, both results follow.
+
+**Implication:** any claim we make about a codec effect has to survive VAD trimming before we can attribute it to speech content. This is stated as a falsification condition in the project README, not added after the fact.
+
+---
+
+### 12. Panariello, Todisco & Evans, "Malafide: a novel adversarial convolutive noise attack against deepfake and spoofing detection systems," Interspeech 2023 (arXiv:2306.07655)
+
+Introduces a convolutive noise filter optimised to defeat a specific spoofing countermeasure while leaving the attacked utterance's speaker characteristics intact.
+
+**Relevance:** Malafide is applied in the ASVspoof 5 evaluation set as attacks A18, A20, A23 and A30, which form part of our adversarial slice. The filters released with the benchmark were optimised **against an AASIST countermeasure**.
+
+**Implication:** our adversarial comparison is not symmetric. For AASIST these are near-white-box attacks; for the SSL detector they are transfer attacks. Any cross-architecture statement about adversarial robustness has to be reported as attack transfer, not as an architecture property.
+
+---
+
+### 13. Todisco, Panariello, Wang, Delgado, Lee & Evans, "Malacopula: adversarial automatic speaker verification attacks using a neural-based generalised Hammerstein model," ASVspoof Workshop 2024 (arXiv:2408.09300)
+
+A non-linear filter optimised to make spoofed speech better match a target speaker, aimed at the **ASV system** rather than at the countermeasure.
+
+**Relevance:** Malacopula appears in ASVspoof 5 as A27, A31 and A32, and as the second stage of A30. Because its target is ASV rather than the countermeasure, it sits in our adversarial slice with a different threat model from Malafide, and the two should not be pooled.
+
+**Implication:** A30 is the only ASVspoof 5 attack applying both filters, which makes it the natural worst case and worth reporting separately rather than averaging into a single adversarial number.
+
+---
+
+### 14. Codec and compression robustness on ASVspoof 5
+
+*(Placeholder — fill in the full reference for the per-codec ASVspoof 5 breakdown cited in the project README as "Dao et al. (2026)".)*
+
+**Relevance:** ASVspoof 5 is the first benchmark to label codec conditions alongside generator and adversarial conditions on a single evaluation set, and per-condition breakdowns have already been reported by the organisers and in follow-up work.
+
+**Implication:** per-codec reporting is not our novelty. What we add is utterance-level pairing of coded audio with its own uncoded original, which lets us measure the score change *per utterance and per class* and so separate "the codec makes fakes look real" from "the codec makes real speech look fake" — a distinction pooled per-condition EER cannot make.
+
+---
+
 ## SOTA Positioning
 
 | Area | Recent direction | Our treatment |
 |---|---|---|
-| Specialized detector architecture | AASIST, AASIST2, AASIST3 | Reproduce AASIST as baseline |
-| SSL representations & efficient fine-tuning | WavLM, XLS-R, MoLEx (LoRA+MoE) | Include a simple SSL + lightweight-head baseline (not parameter-efficient fine-tuning) |
-| Unseen-attack generalization | DFADD, ASVspoof 5, cross-domain studies (Beyond Identity) | Primary research setting |
-| Data augmentation | Front-/back-end + augmentation studies (Schäfer et al.) | Not claimed as novelty |
+| Specialized detector architecture | AASIST, AASIST2, AASIST3 | Released AASIST checkpoint used as the non-SSL reference point |
+| SSL representations & efficient fine-tuning | WavLM, XLS-R, MoLEx (LoRA+MoE) | Frozen XLS-R with a lightweight head; **not** parameter-efficient fine-tuning, and our conclusions are scoped to frozen-feature detectors |
+| Generalization decomposition | Hardness-vs-difference split (Harder or Different?) | Decompose **by cause** instead: generator family, codec condition, adversarial post-processing, each against a matched reference |
+| Unseen-attack generalization | DFADD, ASVspoof 5, cross-domain studies | One of three shift types, not the whole setting |
+| Codec / compression robustness | Per-condition breakdowns on ASVspoof 5 | Utterance-level pairing against the uncoded original, decomposed per class |
+| Adversarial attacks on countermeasures | Malafide (anti-CM), Malacopula (anti-ASV) | Evaluated as a separate shift type; reported as attack transfer for the SSL detector, since the released filters target AASIST |
+| Shortcut learning | Silence and duration cues (Speech is Silver...) | Pre-registered VAD-trimmed and silence-only controls as falsification conditions |
+| Data augmentation | Front-/back-end + augmentation studies | Out of scope; no augmentation in the base condition |
 | Layer/representation selection | Probing-guided layer selection | Not our contribution; noted as an alternative SSL-side lever |
-| Robustness/uncertainty | PV-VASM provides formal probabilistic verification | Use a simpler empirical calibration + risk-coverage framework |
-| Efficient deployment | Parameter-efficient/SSL-based systems are an active area | INT8 + CPU latency as our deployment constraint |
+| Robustness/uncertainty | PV-VASM provides formal probabilistic verification | Calibration and risk-coverage used as a **diagnostic** per shift type, not as the contribution |
+| Efficient deployment | Parameter-efficient/SSL-based systems are an active area | INT8 + CPU latency, optional and only after the core table exists |
 
 ## Research Gap
 
 The literature shows that:
 
-1. unseen-attack and cross-domain generalization are established challenges;
-2. SSL representations, and increasingly parameter-efficient fine-tuning on top of them, are a major direction for strong detectors;
-3. architecture variants (AASIST2/3) and data augmentation are already heavily explored;
-4. representation/layer selection is an emerging direction for generalization; and
-5. probabilistic robustness verification for unseen conditions is emerging, but via formal bounds rather than calibrated selective prediction.
+1. unseen-attack and cross-domain generalization are established challenges, not a novel framing;
+2. SSL representations are the dominant direction for strong detectors, and are already reported to generalize better, though the reason is not established;
+3. architecture variants (AASIST2/3) and data augmentation are heavily explored;
+4. decomposing the generalization gap has been attempted, but by *hardness versus difference* rather than by cause, on benchmarks that do not label generator, codec and adversarial shift on one evaluation set;
+5. shortcut learning on non-speech regions is a known failure mode of ASVspoof-trained detectors; and
+6. calibration and per-condition reporting are already standard in the ASVspoof 5 results.
 
-Therefore, our novelty claim is deliberately narrow:
+Therefore our novelty claim is deliberately narrow:
 
-> **We evaluate whether post-hoc calibrated confidence can support useful selective prediction under unseen attack shift, and whether attack-aware sampling improves that behavior, while holding the official benchmark protocol fixed.**
+> **We decompose detector failure on ASVspoof 5 by cause — unseen generator family, codec condition, and adversarial post-processing — each against a matched reference with speaker-level intervals, and compare a specialised architecture against a frozen SSL front end. We ask whether the two architectures fail in the same order, and if not, what mechanism explains the difference.**
 
-This is an **empirical/evaluation contribution**, not a claim of a fundamentally new calibration algorithm.
+This is an **empirical/diagnostic contribution**. We do not propose a new architecture, training scheme or calibration algorithm.
 
-The key comparison is:
+What the decomposition adds beyond existing per-condition reporting:
 
-**uncalibrated MSP → temperature-scaled confidence → risk/coverage**
+- a non-SSL reference point evaluated on the same slices as the SSL detector;
+- **utterance-level pairing** of coded audio with its own uncoded original, which allows the codec effect to be split by class rather than summarised as one EER;
+- adversarial conditions placed inside the same decomposition rather than reported separately;
+- calibration and risk-coverage computed **per shift type**, to ask whether confidence fails together with accuracy or independently of it;
+- pre-registered controls, including the VAD-trimmed rerun, with falsification conditions fixed in advance.
 
-under:
-
-**in-domain → unseen attack → codec shift → cross-dataset shift**.
-
-A positive or negative result is useful because the project explicitly tests whether calibration and abstention provide value beyond ordinary EER reporting.
+A negative result remains useful: if both architectures degrade in the same order with overlapping intervals, pooled reporting is adequate and we will say so.
