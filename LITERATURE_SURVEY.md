@@ -152,13 +152,24 @@ A non-linear filter optimised to make spoofed speech better match a target speak
 
 ---
 
-### 14. Codec and compression robustness on ASVspoof 5
+### 14. Dao, Matrouf, Rouvier & Evans, "A Comparison of SSL-Based Feature Extractors and Back-End Classifiers for Spoofing Detection: A Multi-Corpus Training and Cross-Linguistic Analysis," Odyssey 2026, pp. 263-268 (DOI: 10.21437/Odyssey.2026-39)
 
-*(Placeholder — fill in the full reference for the per-codec ASVspoof 5 breakdown cited in the project README as "Dao et al. (2026)".)*
+Compares SSL front ends and back-end classifiers for spoofing detection across corpora. Table 4 reports ASVspoof 5 EER separately for uncoded audio and each codec condition C01-C11, for an XLSR-ResNet system under two training settings:
 
-**Relevance:** ASVspoof 5 is the first benchmark to label codec conditions alongside generator and adversarial conditions on a single evaluation set, and per-condition breakdowns have already been reported by the organisers and in follow-up work.
+| Condition | ASVspoof 5 training only | ASVspoof 5 + MLAAD-v3 |
+|---|---|---|
+| uncoded | 0.95% | 0.53% |
+| C04 (Encodec) | 11.87% | 27.11% |
+| C07 (mp3+Encodec) | 14.52% | 32.32% |
+| pooled | 4.72% | 12.34% |
 
-**Implication:** per-codec reporting is not our novelty. What we add is utterance-level pairing of coded audio with its own uncoded original, which lets us measure the score change *per utterance and per class* and so separate "the codec makes fakes look real" from "the codec makes real speech look fake" — a distinction pooled per-condition EER cannot make.
+**Relevance:** this is the nearest prior work on our codec section, and it is also an independent replication of our central codec result. A different SSL front end, a different back end and different training data produce the same ordering: C04 and C07 are the two worst codec conditions, and C07 is worse than C04. In our run the same two conditions are XLS-R's worst, at roughly 7x and 8x the uncoded reference.
+
+Their second column is further evidence for the mechanism we propose. Adding MLAAD training data *improves* uncoded performance while roughly doubling the error under both neural codecs. If the failure were simply that compression destroys information, more training data should not make it worse. If instead the detector is learning a sharper model of what genuine speech looks like, then audio re-synthesised through a neural codec violates that model harder the sharper it gets - which is the direction their numbers move.
+
+**Difference from our approach:** Dao et al. report pooled per-condition EER for SSL systems only. That cannot distinguish a codec that makes spoofs look real from one that makes real speech look fake, and it offers no non-SSL reference point against which to ask whether the vulnerability is specific to SSL representations.
+
+**Implication:** per-codec reporting on ASVspoof 5 is established and must not be claimed as our contribution. What we add is the paired decomposition - each coded file against its own uncoded original, split by class - and the comparison against a specialised architecture whose codec failures fall on entirely different conditions (the 8 kHz DSP codecs, not the neural ones).
 
 ---
 
@@ -197,7 +208,7 @@ This is an **empirical/diagnostic contribution**. We do not propose a new archit
 
 What the decomposition adds beyond existing per-condition reporting:
 
-- a non-SSL reference point evaluated on the same slices as the SSL detector;
+- a non-SSL reference point evaluated on the same slices as the SSL detector, which existing per-codec reporting (Dao et al.) does not provide;
 - **utterance-level pairing** of coded audio with its own uncoded original, which allows the codec effect to be split by class rather than summarised as one EER;
 - adversarial conditions placed inside the same decomposition rather than reported separately;
 - calibration and risk-coverage computed **per shift type**, to ask whether confidence fails together with accuracy or independently of it;
