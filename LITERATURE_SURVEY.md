@@ -163,9 +163,9 @@ Compares SSL front ends and back-end classifiers for spoofing detection across c
 | C07 (mp3+Encodec) | 14.52% | 32.32% |
 | pooled | 4.72% | 12.34% |
 
-**Relevance:** this is the nearest prior work on our codec section, and it is also an independent replication of our central codec result. A different SSL front end, a different back end and different training data produce the same ordering: C04 and C07 are the two worst codec conditions, and C07 is worse than C04. In our run the same two conditions are XLS-R's worst, at roughly 7x and 8x the uncoded reference.
+**Relevance:** this is the nearest prior work on our codec section, and it agrees with our codec ordering. A different SSL front end, a different back end and different training data produce the same ranking: C04 and C07 are the two worst codec conditions, and C07 is worse than C04. In our run the same two conditions are XLS-R's worst, at +16.49 and +13.21 EER points against the same source utterances uncoded. This is agreement on the ordering, not a replication of our paired class-specific analysis, which they do not perform.
 
-Their second column is further evidence for the mechanism we propose. Adding MLAAD training data *improves* uncoded performance while roughly doubling the error under both neural codecs. If the failure were simply that compression destroys information, more training data should not make it worse. If instead the detector is learning a sharper model of what genuine speech looks like, then audio re-synthesised through a neural codec violates that model harder the sharper it gets - which is the direction their numbers move.
+Their second column is consistent with the mechanism we propose, though the reading is ours rather than theirs. Adding MLAAD training data *improves* uncoded performance while roughly doubling the error under both neural codecs. If the failure were simply that compression destroys information, more training data should not make it worse. If instead the detector is learning a sharper model of what genuine speech looks like, then audio re-synthesised through a neural codec violates that model harder the sharper it gets - which is the direction their numbers move.
 
 **Difference from our approach:** Dao et al. report pooled per-condition EER for SSL systems only. That cannot distinguish a codec that makes spoofs look real from one that makes real speech look fake, and it offers no non-SSL reference point against which to ask whether the vulnerability is specific to SSL representations.
 
@@ -202,13 +202,14 @@ The literature shows that:
 
 Therefore our novelty claim is deliberately narrow:
 
-> **We decompose detector failure on ASVspoof 5 by cause — unseen generator family, codec condition, and adversarial post-processing — each against a matched reference with speaker-level intervals, and compare a specialised architecture against a frozen SSL front end. We ask whether the two architectures fail in the same order, and if not, what mechanism explains the difference.**
+> **We decompose detector failure on ASVspoof 5 by cause, and compare a specialised architecture against a frozen SSL front end. Codec and adversarial shift admit matched contrasts — the same utterance coded and uncoded, the same generator with and without an adversarial filter — and are reported as differences with speaker bootstraps on the difference. Generator shift admits no valid baseline on this benchmark and is reported as between-family variation. We ask whether the two architectures degrade in the same order under the matched contrasts, and if not, what mechanism explains the difference.**
 
 This is an **empirical/diagnostic contribution**. We do not propose a new architecture, training scheme or calibration algorithm.
 
 What the decomposition adds beyond existing per-condition reporting:
 
 - a non-SSL reference point evaluated on the same slices as the SSL detector, which existing per-codec reporting (Dao et al.) does not provide;
+- **matched contrasts with intervals on the difference**: each codec against the same source utterances uncoded, and each Malafide attack against its own source attack, rather than comparing two separately-estimated EERs;
 - **utterance-level pairing** of coded audio with its own uncoded original, which allows the codec effect to be split by class rather than summarised as one EER;
 - adversarial conditions placed inside the same decomposition rather than reported separately;
 - calibration and risk-coverage computed **per shift type**, to ask whether confidence fails together with accuracy or independently of it;
