@@ -5,22 +5,26 @@ __pycache__/
 venv/
 *.egg-info/
 
-# Datasets and audio - never commit these
-data/
+# Datasets - never commit audio
+data/raw/
+data/ASVspoof*/
+data/DFADD/
 *.wav
 *.flac
 *.mp3
 *.npy
 *.h5
 
-# Checkpoints and outputs
-models/
+# Checkpoints and large binaries
 *.pt
 *.pth
 *.ckpt
-results/
+*.onnx
+
+# Run outputs. results/ holds tables and figures - those are deliverables
 runs/
 wandb/
+logs/
 
 # Notebooks
 .ipynb_checkpoints/

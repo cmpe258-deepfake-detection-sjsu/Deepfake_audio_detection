@@ -1,0 +1,49 @@
+detector,slice,kind,n_spoof,EER_%,lo,hi
+AASIST,"ALL attacks, uncoded",reference,136453,22.35,21.72,23.0
+AASIST,legacy unit selection (A19),generator,7760,60.55,59.27,61.86
+AASIST,zero-shot TTS (A17+A21+A22+A28+A29),generator,43278,6.49,6.03,6.99
+AASIST,voice conversion (A24+A25+A26),generator,25955,10.86,10.25,11.53
+AASIST,Malafide A18 (from A17),adversarial,8649,46.83,45.38,48.54
+AASIST,Malafide A30 (from A17),adversarial,8593,34.25,32.37,36.07
+AASIST,Malafide A20 (src in dev),adversarial,7917,49.05,47.7,50.48
+AASIST,Malafide A23 (src in dev),adversarial,8651,18.84,17.75,20.05
+AASIST,Malacopula (A27+A31+A32),adversarial,25650,16.72,15.49,17.93
+AASIST,  source A17 alone,adv-paired,8662,3.54,3.04,4.0
+AASIST,  -> A18 adversarial,adv-paired,8649,46.83,45.38,48.54
+AASIST,  source A17 alone,adv-paired,8662,3.54,3.04,4.0
+AASIST,  -> A30 adversarial,adv-paired,8593,34.25,32.37,36.07
+AASIST,codec C01,codec,26918,25.97,25.24,26.73
+AASIST,codec C02,codec,26918,27.27,26.39,28.14
+AASIST,codec C03,codec,26918,29.58,28.61,30.6
+AASIST,codec C04,codec,26918,29.17,28.31,29.98
+AASIST,codec C05,codec,26918,23.46,22.73,24.33
+AASIST,codec C06,codec,26918,24.47,23.54,25.26
+AASIST,codec C07,codec,26918,29.66,28.85,30.61
+AASIST,codec C08,codec,26918,35.5,34.66,36.39
+AASIST,codec C09,codec,26918,35.03,34.14,36.1
+AASIST,codec C10,codec,26918,36.13,35.12,37.2
+AASIST,codec C11,codec,26918,29.32,28.42,30.28
+XLS-R,"ALL attacks, uncoded",reference,136453,2.23,2.07,2.49
+XLS-R,legacy unit selection (A19),generator,7760,0.46,0.36,0.61
+XLS-R,zero-shot TTS (A17+A21+A22+A28+A29),generator,43278,1.18,1.04,1.38
+XLS-R,voice conversion (A24+A25+A26),generator,25955,1.04,0.93,1.23
+XLS-R,Malafide A18 (from A17),adversarial,8649,2.27,1.95,2.62
+XLS-R,Malafide A30 (from A17),adversarial,8593,7.46,6.74,8.51
+XLS-R,Malafide A20 (src in dev),adversarial,7917,0.53,0.39,0.66
+XLS-R,Malafide A23 (src in dev),adversarial,8651,1.01,0.85,1.24
+XLS-R,Malacopula (A27+A31+A32),adversarial,25650,2.74,2.52,3.07
+XLS-R,  source A17 alone,adv-paired,8662,0.05,0.01,0.07
+XLS-R,  -> A18 adversarial,adv-paired,8649,2.27,1.95,2.62
+XLS-R,  source A17 alone,adv-paired,8662,0.05,0.01,0.07
+XLS-R,  -> A30 adversarial,adv-paired,8593,7.46,6.74,8.51
+XLS-R,codec C01,codec,26918,4.52,4.2,4.89
+XLS-R,codec C02,codec,26918,4.65,4.36,5.02
+XLS-R,codec C03,codec,26918,5.22,4.95,5.69
+XLS-R,codec C04,codec,26918,15.36,14.84,15.92
+XLS-R,codec C05,codec,26918,2.24,2.05,2.51
+XLS-R,codec C06,codec,26918,2.63,2.42,2.97
+XLS-R,codec C07,codec,26918,18.64,18.05,19.27
+XLS-R,codec C08,codec,26918,10.1,9.61,10.58
+XLS-R,codec C09,codec,26918,4.76,4.55,5.15
+XLS-R,codec C10,codec,26918,7.44,7.05,7.88
+XLS-R,codec C11,codec,26918,2.03,1.78,2.32
