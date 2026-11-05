@@ -1,0 +1,9 @@
+codec,effect_untrimmed,effect_trimmed,DiD,lo,hi,pct_of_effect,verdict,subset
+C04,6.76,6.4,-0.36,-1.07,0.61,-5.3,survives,all
+C07,7.24,7.16,-0.08,-0.89,0.83,-1.1,survives,all
+C08,13.56,13.52,-0.04,-0.88,0.89,-0.3,survives,all
+C10,13.76,14.04,0.28,-0.69,1.17,2.0,survives,all
+C04,6.68,6.3,-0.39,-1.19,0.51,-5.8,survives,excl_nospeech
+C07,7.13,7.01,-0.12,-0.96,0.76,-1.7,survives,excl_nospeech
+C08,13.1,13.31,0.2,-0.88,0.92,1.6,survives,excl_nospeech
+C10,13.82,13.98,0.16,-0.83,1.06,1.2,survives,excl_nospeech

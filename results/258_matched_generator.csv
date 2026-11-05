@@ -1,0 +1,7 @@
+detector,family,attacks,EER_%
+AASIST,legacy unit selection,A19,60.55
+AASIST,zero-shot TTS,A17+A21+A22+A28+A29,6.49
+AASIST,voice conversion,A24+A25+A26,10.86
+XLS-R (ens),legacy unit selection,A19,0.46
+XLS-R (ens),zero-shot TTS,A17+A21+A22+A28+A29,1.18
+XLS-R (ens),voice conversion,A24+A25+A26,1.04

@@ -1,0 +1,25 @@
+slice,kind,n_spoof,speakers,EER_%,ci_lo,ci_hi
+"ALL attacks, uncoded",reference,136453,737,22.35,21.72,23.0
+legacy unit selection (A19),generator,7760,737,60.55,59.27,61.86
+zero-shot TTS (A17+A21+A22+A28+A29),generator,43278,737,6.49,6.03,6.99
+voice conversion (A24+A25+A26),generator,25955,737,10.86,10.25,11.53
+Malafide A18 (from A17),adversarial,8649,737,46.83,45.38,48.54
+Malafide A30 (from A17),adversarial,8593,737,34.25,32.37,36.07
+Malafide A20 (source in dev),adversarial,7917,737,49.05,47.7,50.48
+Malafide A23 (source in dev),adversarial,8651,737,18.84,17.75,20.05
+Malacopula (A27+A31+A32),adversarial,25650,737,16.72,15.49,17.93
+  source A17 alone,adv-paired,8662,737,3.54,3.04,4.0
+  -> A18 (adversarial),adv-paired,8649,737,46.83,45.38,48.54
+  source A17 alone,adv-paired,8662,737,3.54,3.04,4.0
+  -> A30 (adversarial),adv-paired,8593,737,34.25,32.37,36.07
+codec C01,codec,26918,737,25.97,25.24,26.73
+codec C02,codec,26918,737,27.27,26.39,28.14
+codec C03,codec,26918,737,29.58,28.61,30.6
+codec C04,codec,26918,737,29.17,28.31,29.98
+codec C05,codec,26918,737,23.46,22.73,24.33
+codec C06,codec,26918,737,24.47,23.54,25.26
+codec C07,codec,26918,737,29.66,28.85,30.61
+codec C08,codec,26918,737,35.5,34.66,36.39
+codec C09,codec,26918,737,35.03,34.14,36.1
+codec C10,codec,26918,737,36.13,35.12,37.2
+codec C11,codec,26918,737,29.32,28.42,30.28
