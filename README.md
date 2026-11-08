@@ -117,19 +117,43 @@ All results carry 95% speaker-level bootstrap intervals, and a difference is cla
 | Official-metric reproduction (success criterion 1) | Shriya, Smitha | Done: full-dev EER 15.20%, matching the 15.2% reported in the official repo |
 | 10% held-out speaker split (seed 258) | Shriya | Done |
 | DFADD + VCTK test set prepared and scored | Shriya | In progress |
-| XLS-R feature caching and SSL head (3 seeds) | Zahira | _update_ |
-| Evaluation harness: slices, codec/adversarial pairing, bootstrap | Smitha | _update_ |
-| Controls, calibration, risk–coverage | Smitha, Zahira | Not started |
+| XLS-R feature caching and SSL head (3 seeds) | Zahira | Done; train/dev/eval feature caches and three seed checkpoints generated |
+| XLS-R dev/eval scoring | Zahira | Done; ensemble scores generated for both splits |
+| XLS-R calibration and selective analysis | Zahira | Done; temperature fitted on dev, eval ECE changed from 0.0330 to 0.0268, and fixed-coverage/per-slice analysis run |
+| AASIST per-slice abstention analysis | Zahira | Done; A12 evaluated on dev and A18/A19 on eval using uncoded examples |
+| VAD-trimmed codec control | Zahira, Shriya | Done; XLS-R rerun with the same 93-original exclusion used for AASIST |
+| Evaluation harness: full shift table, codec/adversarial pairing, bootstrap | Smitha | In progress; confirm integration/status with Smitha |
+| Other controls (random score, MP3, 8 kHz, silence-only) | Smitha, Zahira | Pending |
 
 **Released AASIST, official ASVspoof 5 checkpoint (our scores, official evaluation package):**
 
 | Set | Files | EER (%) | minDCF |
-|---|---|---|---|
+|---|---:|---:|---:|
 | Dev, full | 140,950 | 15.20 | 0.3148 |
 | Eval, pooled | 680,774 | 28.11 | 0.6663 |
 | Held-out training speakers* | 18,583 | 0.05 | 0.0010 |
 
-\*Not speaker-disjoint for AASIST, since the released checkpoint was trained on these speakers. actDCF is about 0.97 on every set because the scores are uncalibrated logits. Calibrated results will be reported once temperature scaling is fitted on dev.
+\*Not speaker-disjoint for AASIST, since the released checkpoint was trained on these speakers. actDCF is about 0.97 on every set because the scores are uncalibrated logits. The AASIST dev temperature fit had no finite optimum, so calibrated AASIST probabilities are not reported. XLS-R temperature scaling was fitted on dev; its eval ECE changed from 0.0330 to 0.0268. Temperature scaling changes probability calibration but does not change confidence ranking or fixed-coverage selective risk.
+
+**AASIST uncoded attack-slice selective results.** Attack AUC compares uncoded spoof examples with uncoded bona fide examples. A12 is in dev; A18/A19 are in eval. The slices contain spoof-only examples, so their retained error is the fraction of retained spoofs classified as bona fide.
+
+| Slice | Split | Uncoded spoof files | AUC | Retained error at 80% / 90% / 100% coverage |
+|---|---|---:|---:|---:|
+| A12 | Dev | 13,702 | 0.1937 | 100% / 100% / 100% |
+| A18 | Eval | 8,649 | 0.5445 | 100% / 100% / 100% |
+| A19 | Eval | 7,760 | 0.3469 | 100% / 100% / 100% |
+
+**XLS-R VAD-trimmed codec control.** The comparison uses 4,907 matched files per condition after excluding the same 93 originals across all five conditions. EER before trimming → after trimming:
+
+| Condition | Untrimmed EER (%) | Trimmed EER (%) |
+|---|---:|---:|
+| Uncoded | 2.00 | 1.92 |
+| C04 | 15.51 | 16.04 |
+| C07 | 18.87 | 18.61 |
+| C08 | 10.33 | 11.62 |
+| C10 | 7.05 | 8.87 |
+
+The codec effects persist after trimming in this matched subset. These are matched-subset results, not full-eval-set codec estimates.
 
 ## Team Task Split
 
@@ -155,7 +179,7 @@ All three share the final report and presentation. We meet weekly to keep splits
 
 ## Repository Layout
 
-```
+```text
 data/          # protocol parsing, speaker split, DFADD/VCTK preparation
 baselines/     # AASIST scoring and the SSL detector (feature caching, head training)
 eval/          # shift slices, codec/adversarial pairing, bootstrap, official metrics
@@ -165,19 +189,3 @@ deployment/    # INT8 conversion and CPU latency (optional)
 notebooks/     # Colab notebooks used to produce scores
 results/       # tables, heatmaps, reliability and risk–coverage plots
 docs/          # proposal, literature survey, AI critique
-```
-
-## Reproducibility Rules
-
-- Train, dev, and eval partitions follow the official ASVspoof 5 Track 1 protocol and are never mixed.
-- The held-out speaker split is created once (seed 258) and reused by everyone.
-- Calibration and thresholds are fitted only on dev and frozen before any evaluation-set scoring.
-- Score files use the official format (`filename`, `cm-score` = bona fide logit, higher means more likely real) and are scored with the official evaluation package.
-- Record seeds, crop logic, model configuration, and checkpoint identifiers for every run.
-- Published numbers are labeled as reference values; only numbers produced by our code are labeled as results.
-- Experiments that are not completed are reported as not run.
-
-## Further Reading
-
-- [`LITERATURE_SURVEY.md`](LITERATURE_SURVEY.md)
-- [`AI_CRITIQUE.md`](AI_CRITIQUE.md)
