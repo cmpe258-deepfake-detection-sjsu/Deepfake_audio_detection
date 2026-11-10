@@ -1,0 +1,23 @@
+{
+  "purpose": "VAD-trimmed control for the codec slice (pre-registered in README)",
+  "codecs": [
+    "C04",
+    "C07",
+    "C08",
+    "C10"
+  ],
+  "n_per_class": 2500,
+  "selection_seed": 258,
+  "one_file_per_original_and_codec": "lowest file ID if several quality levels",
+  "vad": "silero-vad 6.2.3, get_speech_timestamps, 16 kHz",
+  "vad_params": {
+    "threshold": 0.5,
+    "min_speech_duration_ms": 250,
+    "min_silence_duration_ms": 100,
+    "speech_pad_ms": 30
+  },
+  "trimming": "leading and trailing silence only (start of first to end of last speech segment); each file trimmed independently; same settings for bona fide and spoof",
+  "no_speech_found": "file kept untrimmed and flagged in the trim log",
+  "model_input_after_trim": "same as before: first 64,600 samples, short clips repeated",
+  "vad_frame": "512 samples = 32 ms at 16 kHz, non-overlapping (silero-vad default window_size_samples); boundaries fall on this grid, then speech_pad_ms=30 is applied, so trims are n*32 ms - 30 ms"
+}
