@@ -1,0 +1,9 @@
+codec,effect_untrimmed,effect_trimmed,DiD,lo,hi,verdict,subset,model
+C04,5.25,6.37,1.13,-0.9,2.47,survives,matched_20ms,aasist
+C07,8.78,10.14,1.36,-0.95,3.45,survives,matched_20ms,aasist
+C08,13.44,14.46,1.02,-1.86,2.37,survives,matched_20ms,aasist
+C10,16.64,16.97,0.33,-2.09,1.96,survives,matched_20ms,aasist
+C04,6.76,6.4,-0.36,-1.07,0.61,survives,all_scored,aasist
+C07,7.24,7.16,-0.08,-0.89,0.83,survives,all_scored,aasist
+C08,13.56,13.52,-0.04,-0.88,0.89,survives,all_scored,aasist
+C10,13.76,14.04,0.28,-0.69,1.17,survives,all_scored,aasist
