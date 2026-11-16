@@ -110,7 +110,7 @@ Optional experiments, in priority order: partial fine-tuning of the SSL top laye
 
 | Control | Expectation | What it catches |
 |---|---|---|
-| Random-score detector on every slice | EER near 50% within sampling variation | Bugs in scoring, bootstrap, or risk–coverage code |
+| Random-score detector on every slice | EER near 50% within sampling variation | Bugs in scoring, bootstrap, or risk–coverage code. **Met** for slicing, EER and bootstrap: three random detectors, EER 49.26–50.68% across all 21 slices, 61 of 63 intervals contain 50%. The risk–coverage code is not covered |
 | Released AASIST vs. official metrics | Our numbers match the official package | Harness and protocol-parsing errors. **Met:** pooled eval 28.11% both ways |
 | Near-transparent MP3 | Little or no degradation | A "codec effect" that is really a pipeline or loudness artifact |
 | 8 kHz downsampling | A shift we know exists should be detectable by the slice machinery | Slices too coarse to register a real condition change |
@@ -210,9 +210,10 @@ A difference is claimed only when a paired bootstrap on that difference supports
 | VAD rescoring, XLS-R | Zahira | Done — same 93-original exclusion across all five conditions |
 | VAD paired bootstrap and boundary-matched control | Smitha | Done — both detectors; per-condition VAD boundaries found and controlled for |
 | Per-slice calibration and risk–coverage | Zahira | Done — per-slice selective prediction for both detectors; AASIST temperature fit has no finite optimum, so no calibrated AASIST probabilities are claimed |
-| DFADD folded into the main table | Smitha | Not started |
-| Random-score and silence-only controls | Smitha, Shriya | Not started |
-| Rates at a fixed dev-selected threshold | Smitha | Not started |
+| DFADD folded into the main table | Smitha | Done for AASIST — per generator, utterance-bootstrap intervals; XLS-R not run (no DFADD score file) |
+| Random-score control | Smitha | Done — at chance on every slice |
+| Silence-only control | Shriya | Not started |
+| Rates at a fixed dev-selected threshold | Smitha | Done — both detectors, every codec and attack slice, DFADD for AASIST |
 
 ## Results so far
 
@@ -227,9 +228,13 @@ Both are paired degradations with intervals on the difference. Adversarial post-
 
 **AASIST is sign-inverted on vocoder-free synthesis; XLS-R is not.** A19 and A12 are the only two waveform-concatenation attacks in the benchmark, and the only two AASIST scores as more bona fide than real speech — AUC 0.347 on eval and 0.194 on dev, the latter holding for 99.2% of 386 speakers. XLS-R inverts on nothing. The inversion is codec-independent: A19 stays between 53.9% and 61.2% EER across all twelve conditions.
 
-**Codec degradation is concentrated in the bona fide class.** Paired per-utterance deltas are negative for real speech under every codec and both detectors; spoof scores move far less. For XLS-R the two neural-codec conditions produce the largest bona fide drops in the table.
+**Codec degradation is concentrated in the bona fide class.** Paired per-utterance deltas are negative for real speech under every codec for AASIST and under ten of eleven for XLS-R (the exception is C11, +0.32). Where the effect is large, spoof scores move much less than bona fide scores. For XLS-R the two neural-codec conditions produce the largest bona fide drops in the table.
+
+**At a fixed threshold, the codec error is false rejection.** With one threshold per detector frozen at the dev EER point, XLS-R rejects 1.09% of uncoded real speech, 42.67% under C04 and 50.47% under C07, while its false acceptance does not rise under any codec. AASIST moves the other way on the neural codecs: false acceptance rises by 13.76 points under C04 and 12.94 under C07 while false rejection rises by under 4. On uncoded audio AASIST accepts 96.77% of A19, 92.88% of A20 and 91.12% of A18 as real. EER re-selects the threshold per slice and so cannot show which class the errors fall in. Reproduce with `eval/fixed_threshold.py` → `results/258_fixed_threshold.csv`.
 
 **The codec effect survives the VAD control on both detectors.** On the boundary-matched subset every difference-in-differences interval spans zero. The two XLS-R conditions that appeared to change on the unmatched comparison were an artefact of the VAD cutting about 200 ms more from the 8 kHz files than from their uncoded sources; see *Control: leading and trailing silence*. Attack slices are likewise restricted to uncoded examples, because pooling codec conditions into a generator slice moves A19's AUC anywhere from 0.23 to 0.52 depending on the mix.
+
+**DFADD: AASIST's error is mostly rejected real speech.** Pooled EER on the five DFADD generators is 7.81% [6.86, 8.77], from 0.37% (NaturalSpeech2) to 12.99% (StyleTTS2); no generator is inverted. At the ASVspoof 5 dev threshold AASIST rejects 19.74% of VCTK bona fide speech and accepts 1.67% of the fakes. The test split has two speakers, so intervals resample utterances and understate speaker variation, and the audio is clean and uncoded. XLS-R was not scored on DFADD. Reproduce with `eval/dfadd_fold.py` → `results/258_dfadd_table.csv`.
 
 **Independent agreement on the codec ordering.** Dao et al. (Odyssey 2026) report C04 and C07 as the two worst conditions for a different SSL system, with C07 worse than C04 — the same ordering. Their analysis is pooled per-condition EER, not the paired class-specific decomposition, so this is agreement on the ordering rather than a replication of our mechanism.
 
