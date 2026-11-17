@@ -1,0 +1,90 @@
+detector,slice,kind,class,metric,n,rate_%,lo,hi,delta_vs_uncoded,d_lo,d_hi
+AASIST,uncoded,codec,bona fide,FRR,35149,11.62,10.54,12.72,,,
+AASIST,codec C01,codec,bona fide,FRR,9534,22.8,21.35,24.22,11.18,10.25,12.17
+AASIST,codec C02,codec,bona fide,FRR,9654,24.6,23.01,26.23,12.98,11.91,14.16
+AASIST,codec C03,codec,bona fide,FRR,9710,20.23,18.85,21.68,8.61,7.71,9.59
+AASIST,codec C04,codec,bona fide,FRR,9701,13.3,12.2,14.44,1.68,0.87,2.45
+AASIST,codec C05,codec,bona fide,FRR,9693,16.2,14.74,17.6,4.58,3.85,5.3
+AASIST,codec C06,codec,bona fide,FRR,8976,18.08,16.7,19.44,6.46,5.71,7.24
+AASIST,codec C07,codec,bona fide,FRR,9610,15.24,13.98,16.44,3.63,2.72,4.5
+AASIST,codec C08,codec,bona fide,FRR,9003,46.97,45.12,48.65,35.35,33.81,36.76
+AASIST,codec C09,codec,bona fide,FRR,8994,51.61,49.66,53.51,39.99,38.27,41.76
+AASIST,codec C10,codec,bona fide,FRR,9673,65.95,64.17,67.75,54.33,52.78,55.9
+AASIST,codec C11,codec,bona fide,FRR,8991,40.59,38.72,42.48,28.97,27.48,30.42
+AASIST,"ALL attacks, uncoded",attack,spoof,FAR,136453,30.13,29.13,31.18,,,
+AASIST,attack A17,attack,spoof,FAR,8662,0.63,0.37,0.97,,,
+AASIST,attack A18,attack,spoof,FAR,8649,91.12,89.73,92.56,,,
+AASIST,attack A19,attack,spoof,FAR,7760,96.77,95.93,97.48,,,
+AASIST,attack A20,attack,spoof,FAR,7917,92.88,91.41,94.12,,,
+AASIST,attack A21,attack,spoof,FAR,8650,0.66,0.42,0.93,,,
+AASIST,attack A22,attack,spoof,FAR,8645,1.57,1.22,1.94,,,
+AASIST,attack A23,attack,spoof,FAR,8651,32.47,29.56,35.47,,,
+AASIST,attack A24,attack,spoof,FAR,8644,0.53,0.29,0.84,,,
+AASIST,attack A25,attack,spoof,FAR,8658,13.2,12.02,14.31,,,
+AASIST,attack A26,attack,spoof,FAR,8653,16.64,14.78,18.62,,,
+AASIST,attack A27,attack,spoof,FAR,8612,20.55,17.77,23.34,,,
+AASIST,attack A28,attack,spoof,FAR,8662,13.29,11.44,15.09,,,
+AASIST,attack A29,attack,spoof,FAR,8659,0.05,0.0,0.13,,,
+AASIST,attack A30,attack,spoof,FAR,8593,65.9,62.56,69.23,,,
+AASIST,attack A31,attack,spoof,FAR,8548,29.74,26.53,33.11,,,
+AASIST,attack A32,attack,spoof,FAR,8490,18.34,15.95,20.85,,,
+AASIST,uncoded,codec,spoof,FAR,136453,30.13,29.13,31.18,,,
+AASIST,codec C01,codec,spoof,FAR,37719,28.21,27.03,29.47,-1.92,-2.29,-1.53
+AASIST,codec C02,codec,spoof,FAR,37772,28.74,27.45,30.14,-1.39,-1.87,-0.87
+AASIST,codec C03,codec,spoof,FAR,38277,36.98,35.42,38.53,6.85,6.12,7.57
+AASIST,codec C04,codec,spoof,FAR,37998,43.89,42.5,45.3,13.76,13.17,14.33
+AASIST,codec C05,codec,spoof,FAR,37848,28.66,27.6,29.74,-1.48,-1.74,-1.2
+AASIST,codec C06,codec,spoof,FAR,32578,29.58,28.48,30.72,-0.55,-0.89,-0.22
+AASIST,codec C07,codec,spoof,FAR,37738,43.07,41.61,44.59,12.94,12.24,13.6
+AASIST,codec C08,codec,spoof,FAR,37675,28.52,27.51,29.63,-1.61,-2.14,-1.06
+AASIST,codec C09,codec,spoof,FAR,32605,24.09,22.78,25.49,-6.04,-6.71,-5.32
+AASIST,codec C10,codec,spoof,FAR,37804,15.91,14.93,16.92,-14.22,-14.81,-13.66
+AASIST,codec C11,codec,spoof,FAR,37619,22.14,21.19,23.25,-7.99,-8.53,-7.44
+XLS-R,uncoded,codec,bona fide,FRR,35149,1.09,0.88,1.38,,,
+XLS-R,codec C01,codec,bona fide,FRR,9534,11.54,10.7,12.53,10.45,9.68,11.29
+XLS-R,codec C02,codec,bona fide,FRR,9654,13.72,12.77,14.79,12.64,11.73,13.55
+XLS-R,codec C03,codec,bona fide,FRR,9710,15.44,14.36,16.59,14.35,13.33,15.42
+XLS-R,codec C04,codec,bona fide,FRR,9701,42.67,41.44,44.05,41.58,40.4,42.89
+XLS-R,codec C05,codec,bona fide,FRR,9693,2.42,1.98,2.93,1.33,0.97,1.72
+XLS-R,codec C06,codec,bona fide,FRR,8976,2.96,2.46,3.55,1.87,1.49,2.3
+XLS-R,codec C07,codec,bona fide,FRR,9610,50.47,49.22,51.81,49.38,48.2,50.67
+XLS-R,codec C08,codec,bona fide,FRR,9003,20.75,19.86,21.74,19.66,18.79,20.6
+XLS-R,codec C09,codec,bona fide,FRR,8994,17.01,15.8,18.34,15.92,14.73,17.21
+XLS-R,codec C10,codec,bona fide,FRR,9673,26.44,25.15,27.75,25.36,24.05,26.58
+XLS-R,codec C11,codec,bona fide,FRR,8991,0.92,0.7,1.2,-0.17,-0.38,0.05
+XLS-R,"ALL attacks, uncoded",attack,spoof,FAR,136453,3.61,3.35,3.87,,,
+XLS-R,attack A17,attack,spoof,FAR,8662,0.0,0.0,0.0,,,
+XLS-R,attack A18,attack,spoof,FAR,8649,4.61,3.91,5.36,,,
+XLS-R,attack A19,attack,spoof,FAR,7760,0.32,0.19,0.48,,,
+XLS-R,attack A20,attack,spoof,FAR,7917,0.38,0.22,0.54,,,
+XLS-R,attack A21,attack,spoof,FAR,8650,0.0,0.0,0.0,,,
+XLS-R,attack A22,attack,spoof,FAR,8645,0.02,0.0,0.06,,,
+XLS-R,attack A23,attack,spoof,FAR,8651,0.98,0.73,1.25,,,
+XLS-R,attack A24,attack,spoof,FAR,8644,2.98,2.51,3.52,,,
+XLS-R,attack A25,attack,spoof,FAR,8658,0.0,0.0,0.0,,,
+XLS-R,attack A26,attack,spoof,FAR,8653,0.0,0.0,0.0,,,
+XLS-R,attack A27,attack,spoof,FAR,8612,0.45,0.29,0.63,,,
+XLS-R,attack A28,attack,spoof,FAR,8662,6.35,5.26,7.52,,,
+XLS-R,attack A29,attack,spoof,FAR,8659,0.0,0.0,0.0,,,
+XLS-R,attack A30,attack,spoof,FAR,8593,25.74,23.32,28.35,,,
+XLS-R,attack A31,attack,spoof,FAR,8548,15.43,13.86,17.19,,,
+XLS-R,attack A32,attack,spoof,FAR,8490,0.05,0.01,0.1,,,
+XLS-R,uncoded,codec,spoof,FAR,136453,3.61,3.35,3.87,,,
+XLS-R,codec C01,codec,spoof,FAR,37719,1.47,1.31,1.65,-2.14,-2.35,-1.95
+XLS-R,codec C02,codec,spoof,FAR,37772,1.31,1.16,1.48,-2.3,-2.49,-2.1
+XLS-R,codec C03,codec,spoof,FAR,38277,1.32,1.16,1.49,-2.29,-2.51,-2.08
+XLS-R,codec C04,codec,spoof,FAR,37998,0.89,0.79,1.01,-2.71,-2.93,-2.51
+XLS-R,codec C05,codec,spoof,FAR,37848,2.21,2.0,2.44,-1.4,-1.55,-1.25
+XLS-R,codec C06,codec,spoof,FAR,32578,2.41,2.19,2.67,-1.2,-1.38,-1.04
+XLS-R,codec C07,codec,spoof,FAR,37738,0.63,0.54,0.73,-2.98,-3.19,-2.77
+XLS-R,codec C08,codec,spoof,FAR,37675,1.62,1.44,1.78,-1.99,-2.26,-1.75
+XLS-R,codec C09,codec,spoof,FAR,32605,1.04,0.89,1.18,-2.57,-2.83,-2.31
+XLS-R,codec C10,codec,spoof,FAR,37804,0.99,0.87,1.11,-2.62,-2.88,-2.37
+XLS-R,codec C11,codec,spoof,FAR,37619,3.61,3.35,3.87,-0.0,-0.25,0.24
+AASIST,DFADD bona fide (VCTK),DFADD (utterance bootstrap),bona fide,FRR,755,19.74,16.69,22.65,,,
+AASIST,DFADD GradTTS,DFADD (utterance bootstrap),spoof,FAR,600,1.0,0.33,1.83,,,
+AASIST,DFADD MatchaTTS,DFADD (utterance bootstrap),spoof,FAR,600,0.33,0.0,0.83,,,
+AASIST,DFADD NaturalSpeech2,DFADD (utterance bootstrap),spoof,FAR,600,0.0,0.0,0.0,,,
+AASIST,DFADD PflowTTS,DFADD (utterance bootstrap),spoof,FAR,600,0.0,0.0,0.0,,,
+AASIST,DFADD StyleTTS2,DFADD (utterance bootstrap),spoof,FAR,600,7.0,5.17,9.17,,,
+AASIST,DFADD pooled (5 generators),DFADD (utterance bootstrap),spoof,FAR,3000,1.67,1.23,2.13,,,

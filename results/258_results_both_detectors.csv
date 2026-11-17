@@ -47,3 +47,15 @@ XLS-R,codec C08,codec,26918,10.1,9.61,10.58
 XLS-R,codec C09,codec,26918,4.76,4.55,5.15
 XLS-R,codec C10,codec,26918,7.44,7.05,7.88
 XLS-R,codec C11,codec,26918,2.03,1.78,2.32
+AASIST,DFADD GradTTS,"cross-dataset (DFADD), utterance bootstrap",600,8.85,7.16,10.18
+AASIST,DFADD MatchaTTS,"cross-dataset (DFADD), utterance bootstrap",600,4.14,3.02,5.17
+AASIST,DFADD NaturalSpeech2,"cross-dataset (DFADD), utterance bootstrap",600,0.37,0.0,0.81
+AASIST,DFADD PflowTTS,"cross-dataset (DFADD), utterance bootstrap",600,1.99,1.33,2.88
+AASIST,DFADD StyleTTS2,"cross-dataset (DFADD), utterance bootstrap",600,12.99,11.36,14.98
+AASIST,DFADD pooled (5 generators),"cross-dataset (DFADD), utterance bootstrap",3000,7.81,6.86,8.77
+XLS-R,DFADD GradTTS,"cross-dataset (DFADD), not run",600,,,
+XLS-R,DFADD MatchaTTS,"cross-dataset (DFADD), not run",600,,,
+XLS-R,DFADD NaturalSpeech2,"cross-dataset (DFADD), not run",600,,,
+XLS-R,DFADD PflowTTS,"cross-dataset (DFADD), not run",600,,,
+XLS-R,DFADD StyleTTS2,"cross-dataset (DFADD), not run",600,,,
+XLS-R,DFADD pooled (5 generators),"cross-dataset (DFADD), not run",3000,,,

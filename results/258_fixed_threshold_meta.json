@@ -1,0 +1,23 @@
+{
+  "rule": "real if score >= threshold; threshold = dev EER point, frozen",
+  "seed": 258,
+  "bootstrap_draws": 1000,
+  "detectors": {
+    "AASIST": {
+      "threshold": 7.5279946,
+      "dev_FRR_%": 15.2,
+      "dev_FAR_%": 15.2,
+      "dev_EER_%": 15.2,
+      "dev_file": "aasist_dev.tsv",
+      "eval_file": "aasist_eval.tsv"
+    },
+    "XLS-R": {
+      "threshold": 1.1713915,
+      "dev_FRR_%": 0.99,
+      "dev_FAR_%": 0.99,
+      "dev_EER_%": 0.99,
+      "dev_file": "xlsr_dev.tsv",
+      "eval_file": "xlsr_eval.tsv"
+    }
+  }
+}

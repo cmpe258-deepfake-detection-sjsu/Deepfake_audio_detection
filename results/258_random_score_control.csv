@@ -1,0 +1,64 @@
+seed,slice,kind,n_bonafide,n_spoof,EER_%,lo,hi,contains_50
+258,"ALL attacks, uncoded",reference,35149,136453,49.95,49.64,50.24,True
+258,legacy unit selection (A19),generator,35149,7760,49.88,49.3,50.48,True
+258,zero-shot TTS (A17+A21+A22+A28+A29),generator,35149,43278,49.96,49.62,50.31,True
+258,voice conversion (A24+A25+A26),generator,35149,25955,50.02,49.58,50.39,True
+258,Malafide A18 (from A17),adversarial,35149,8649,49.54,48.82,50.13,True
+258,Malafide A30 (from A17),adversarial,35149,8593,49.62,49.02,50.23,True
+258,Malafide A20 (src in dev),adversarial,35149,7917,49.74,49.14,50.3,True
+258,Malafide A23 (src in dev),adversarial,35149,8651,49.97,49.45,50.55,True
+258,Malacopula (A27+A31+A32),adversarial,35149,25650,50.13,49.74,50.59,True
+258,  source A17 alone,adv-paired,35149,8662,50.06,49.4,50.67,True
+258,codec C01,codec,6839,26918,50.45,49.8,51.19,True
+258,codec C02,codec,6839,26918,49.74,49.2,50.46,True
+258,codec C03,codec,6839,26918,50.25,49.58,50.98,True
+258,codec C04,codec,6839,26918,49.96,49.24,50.6,True
+258,codec C05,codec,6839,26918,49.77,49.0,50.56,True
+258,codec C06,codec,6839,26918,50.46,49.84,51.16,True
+258,codec C07,codec,6839,26918,49.79,49.15,50.57,True
+258,codec C08,codec,6839,26918,50.1,49.47,50.76,True
+258,codec C09,codec,6839,26918,49.82,49.11,50.51,True
+258,codec C10,codec,6839,26918,50.25,49.46,50.89,True
+258,codec C11,codec,6839,26918,50.37,49.67,50.91,True
+259,"ALL attacks, uncoded",reference,35149,136453,50.12,49.87,50.43,True
+259,legacy unit selection (A19),generator,35149,7760,50.5,49.96,51.13,True
+259,zero-shot TTS (A17+A21+A22+A28+A29),generator,35149,43278,49.81,49.48,50.17,True
+259,voice conversion (A24+A25+A26),generator,35149,25955,50.24,49.91,50.61,True
+259,Malafide A18 (from A17),adversarial,35149,8649,50.01,49.35,50.63,True
+259,Malafide A30 (from A17),adversarial,35149,8593,50.19,49.6,50.66,True
+259,Malafide A20 (src in dev),adversarial,35149,7917,50.01,49.43,50.78,True
+259,Malafide A23 (src in dev),adversarial,35149,8651,50.53,49.97,51.09,True
+259,Malacopula (A27+A31+A32),adversarial,35149,25650,50.38,50.06,50.8,False
+259,  source A17 alone,adv-paired,35149,8662,49.95,49.52,50.57,True
+259,codec C01,codec,6839,26918,50.02,49.42,50.65,True
+259,codec C02,codec,6839,26918,50.2,49.57,50.85,True
+259,codec C03,codec,6839,26918,49.98,49.39,50.63,True
+259,codec C04,codec,6839,26918,49.74,49.16,50.53,True
+259,codec C05,codec,6839,26918,50.34,49.55,50.96,True
+259,codec C06,codec,6839,26918,50.32,49.54,50.85,True
+259,codec C07,codec,6839,26918,49.66,49.14,50.37,True
+259,codec C08,codec,6839,26918,49.8,49.26,50.42,True
+259,codec C09,codec,6839,26918,50.1,49.48,50.77,True
+259,codec C10,codec,6839,26918,49.4,48.81,50.1,True
+259,codec C11,codec,6839,26918,49.8,49.2,50.48,True
+260,"ALL attacks, uncoded",reference,35149,136453,49.84,49.55,50.11,True
+260,legacy unit selection (A19),generator,35149,7760,49.81,49.24,50.44,True
+260,zero-shot TTS (A17+A21+A22+A28+A29),generator,35149,43278,49.69,49.3,50.08,True
+260,voice conversion (A24+A25+A26),generator,35149,25955,49.65,49.26,50.07,True
+260,Malafide A18 (from A17),adversarial,35149,8649,50.27,49.67,50.77,True
+260,Malafide A30 (from A17),adversarial,35149,8593,49.75,49.16,50.33,True
+260,Malafide A20 (src in dev),adversarial,35149,7917,49.26,48.73,49.85,False
+260,Malafide A23 (src in dev),adversarial,35149,8651,50.14,49.58,50.72,True
+260,Malacopula (A27+A31+A32),adversarial,35149,25650,50.25,49.86,50.57,True
+260,  source A17 alone,adv-paired,35149,8662,49.49,48.89,50.06,True
+260,codec C01,codec,6839,26918,50.33,49.74,51.04,True
+260,codec C02,codec,6839,26918,49.77,49.08,50.45,True
+260,codec C03,codec,6839,26918,49.68,49.02,50.31,True
+260,codec C04,codec,6839,26918,50.39,49.66,51.05,True
+260,codec C05,codec,6839,26918,49.92,49.25,50.68,True
+260,codec C06,codec,6839,26918,49.94,49.28,50.56,True
+260,codec C07,codec,6839,26918,50.45,49.8,51.09,True
+260,codec C08,codec,6839,26918,50.24,49.63,50.95,True
+260,codec C09,codec,6839,26918,50.1,49.53,50.76,True
+260,codec C10,codec,6839,26918,49.76,49.12,50.35,True
+260,codec C11,codec,6839,26918,50.68,49.99,51.3,True
