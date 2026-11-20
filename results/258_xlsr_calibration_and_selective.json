@@ -1,0 +1,48 @@
+{
+  "temperature_fitted_on": "dev",
+  "temperature": 1.522302054847988,
+  "splits": {
+    "dev": {
+      "n_files": 140950,
+      "raw_ECE": 0.011103651652698178,
+      "calibrated_ECE": 0.010957860668963159,
+      "selective_prediction": {
+        "aurc": 0.0007221971521702212,
+        "oracle_aurc": 7.51963918860967e-05,
+        "excess_aurc": 0.0006470007602841245,
+        "risk_at_80_coverage": 0.0013479957431713375,
+        "risk_at_90_coverage": 0.0022072444917425405
+      },
+      "official_metrics": {
+        "set": "xlsr_dev_calibrated",
+        "n_files": 140950,
+        "n_bonafide": 31334,
+        "minDCF": 0.0222,
+        "EER_%": 0.99,
+        "CLLR": 0.0493,
+        "actDCF": 0.0236
+      }
+    },
+    "eval": {
+      "n_files": 680774,
+      "raw_ECE": 0.03303942873076715,
+      "calibrated_ECE": 0.026803058484689935,
+      "selective_prediction": {
+        "aurc": 0.008972455523954611,
+        "oracle_aurc": 0.0013091205998976816,
+        "excess_aurc": 0.00766333492405693,
+        "risk_at_80_coverage": 0.012610627593551468,
+        "risk_at_90_coverage": 0.02180196736723046
+      },
+      "official_metrics": {
+        "set": "xlsr_eval_calibrated",
+        "n_files": 680774,
+        "n_bonafide": 138688,
+        "minDCF": 0.2149,
+        "EER_%": 7.43,
+        "CLLR": 0.3937,
+        "actDCF": 0.2231
+      }
+    }
+  }
+}
