@@ -1,0 +1,16 @@
+{
+  "purpose": "silence-and-duration-only control (pre-registered in README)",
+  "features": "duration, leading silence, trailing silence, internal silence, speech ratio, number of speech segments; time features log1p-transformed; nothing spectral",
+  "vad": "silero-vad 6.2.3, 16 kHz, 512-sample (32 ms) frames",
+  "vad_params": {
+    "threshold": 0.5,
+    "min_speech_duration_ms": 250,
+    "min_silence_duration_ms": 100,
+    "speech_pad_ms": 30
+  },
+  "classifier": "StandardScaler + LogisticRegression(class_weight=balanced), sklearn defaults otherwise",
+  "training": "dev only, 10000 bona fide + 10000 spoof, seed 258",
+  "test": "eval: 5000 uncoded bona fide; 1000 uncoded spoofs per attack; 1000 bona fide + 1000 spoof per codec",
+  "score": "log-odds of bona fide (higher = more likely real), same convention as cm-score",
+  "expectation": "EER near 50% on every slice; a slice well below that means trivial cues separate the classes there, which is reported as a finding"
+}
