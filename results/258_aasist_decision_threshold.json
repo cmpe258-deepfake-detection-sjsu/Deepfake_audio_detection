@@ -1,0 +1,9 @@
+{
+  "threshold": 7.527943,
+  "fitted_on": "dev",
+  "score": "cm-score (logit_bonafide)",
+  "criterion": "minimum absolute difference between dev false-accept and miss rates",
+  "dev_false_accept_rate": 0.15200335717413516,
+  "dev_miss_rate": 0.15200740409778515,
+  "dev_eer_estimate": 0.15200538063596014
+}

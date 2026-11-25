@@ -1,0 +1,20 @@
+[
+  {
+    "model": "XLS-R",
+    "split": "dev",
+    "temperature": 1.522302054847988,
+    "confidence_order_invariant_by_positive_temperature": true,
+    "raw_aurc": 0.0007221971521702212,
+    "temperature_scaled_aurc": 0.0007221971521702212,
+    "fixed_coverage_error_invariant_by_positive_temperature": true
+  },
+  {
+    "model": "XLS-R",
+    "split": "eval",
+    "temperature": 1.522302054847988,
+    "confidence_order_invariant_by_positive_temperature": true,
+    "raw_aurc": 0.008970856929232282,
+    "temperature_scaled_aurc": 0.008970856929232282,
+    "fixed_coverage_error_invariant_by_positive_temperature": true
+  }
+]
